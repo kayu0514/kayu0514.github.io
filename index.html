@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>電子名刺</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div class="business-card">
@@ -24,5 +24,17 @@
             <input type="submit" value="送信">
         </form>
     </div>
+    <button onclick="saveAsImage()">名刺を保存</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function saveAsImage() {
+            html2canvas(document.querySelector(".business-card")).then(canvas => {
+                let link = document.createElement('a');
+                link.download = 'business-card.jpg';
+                link.href = canvas.toDataURL("image/jpeg");
+                link.click();
+            });
+        }
+    </script>
 </body>
 </html>
