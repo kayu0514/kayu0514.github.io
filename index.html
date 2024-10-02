@@ -7,12 +7,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="business-card">
-        <h1>あなたの名前</h1>
-        <p>あなたの役職</p>
-        <p>Email: your.email@example.com</p>
-        <p>Phone: 123-456-7890</p>
-        <form>
+        <form id="card-form">
             <label for="name">名前:</label>
             <input type="text" id="name" name="name"><br><br>
             <label for="title">役職:</label>
@@ -27,6 +22,14 @@
     <button onclick="saveAsImage()">名刺を保存</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
+        document.getElementById('card-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('card-name').textContent = document.getElementById('name').value;
+            document.getElementById('card-title').textContent = document.getElementById('title').value;
+            document.getElementById('card-email').textContent = 'Email: ' + document.getElementById('email').value;
+            document.getElementById('card-phone').textContent = 'Phone: ' + document.getElementById('phone').value;
+        });
+
         function saveAsImage() {
             html2canvas(document.querySelector(".business-card")).then(canvas => {
                 let link = document.createElement('a');
