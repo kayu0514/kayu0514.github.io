@@ -7,23 +7,23 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="business-card">
+    <div class="business-card" id="business-card">
         <h1 id="card-name">あなたの名前</h1>
         <p id="card-title">あなたの役職</p>
         <p id="card-email">Email: your.email@example.com</p>
         <p id="card-phone">Phone: 123-456-7890</p>
-        <form id="card-form">
-            <label for="name">名前:</label>
-            <input type="text" id="name" name="name"><br><br>
-            <label for="title">役職:</label>
-            <input type="text" id="title" name="title"><br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email"><br><br>
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" name="phone"><br><br>
-            <input type="submit" value="送信">
-        </form>
     </div>
+    <form id="card-form">
+        <label for="name">名前:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="title">役職:</label>
+        <input type="text" id="title" name="title"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone"><br><br>
+        <input type="submit" value="送信">
+    </form>
     <button onclick="saveAsImage()">名刺を保存</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
@@ -36,7 +36,7 @@
         });
 
         function saveAsImage() {
-            html2canvas(document.querySelector(".business-card")).then(canvas => {
+            html2canvas(document.getElementById("business-card")).then(canvas => {
                 let link = document.createElement('a');
                 link.download = 'business-card.jpg';
                 link.href = canvas.toDataURL("image/jpeg");
